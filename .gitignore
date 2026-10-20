@@ -1,0 +1,48 @@
+# Secrets and local config
+.env
+.env.*
+*.key
+*.pem
+*.secret
+secrets/
+local.conf
+*.local
+
+# Logs and output
+*.log
+logs/
+nohup.out
+
+# Backups and temp files
+*.bak
+*.backup
+*.orig
+*.rej
+*.tmp
+*.swp
+*.swo
+*~
+tmp/
+temp/
+
+# Downloaded installers and archives
+*.deb
+*.rpm
+*.AppImage
+*.tar.gz
+*.tgz
+*.zip
+downloads/
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.sublime-*
+.vim/
+.netrwhist
+
+# OS files
+.DS_Store
+Thumbs.db
+.directory
+.Trash-*
