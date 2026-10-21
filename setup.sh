@@ -25,3 +25,7 @@ echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
 
 # Tools
 bash essentials.sh
+bash install_go.sh
+bash install_node.sh
+bash install_python.sh
+bash install_ffmpeg.sh
