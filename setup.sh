@@ -22,3 +22,6 @@ bash zsh.sh
 # Add brew to PATH for future shells
 echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
 echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
+
+# Tools
+bash essentials.sh
