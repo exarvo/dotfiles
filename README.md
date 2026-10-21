@@ -22,6 +22,7 @@ Then log out and back in (or run `exec zsh`) to start using zsh.
 | `setup.sh` | Entry point: apt prerequisites, Homebrew, then runs the scripts below |
 | `zsh.sh` | zsh as the default shell, Oh My Zsh, autosuggestions and syntax-highlighting plugins |
 | `essentials.sh` | cmake, jq, ripgrep, fd, fzf, bat, gh, unzip |
+| `install_vim.sh` | Vim with vim-plug and plugins, `.vimrc` linked to `~/.vimrc`, `EDITOR`/`VISUAL` set to vim |
 | `install_go.sh` | Go and Hugo, with `GOPATH` and `GOBIN` set |
 | `install_node.sh` | Node.js LTS via fnm |
 | `install_python.sh` | Python via uv |
