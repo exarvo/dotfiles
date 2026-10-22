@@ -6,7 +6,7 @@ set -e
 sudo apt install -y zsh
 
 # Make zsh the default login shell for the current user
-sudo chsh -s "$(command -v zsh)" "$USER"
+sudo chsh -s "$(command -v zsh)" "${USER:-$(id -un)}"
 
 # Install Oh My Zsh (unattended: don't switch shell or launch zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
