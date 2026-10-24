@@ -5,4 +5,4 @@ set -e
 brew install cmake jq ripgrep fd fzf bat gh
 
 # unzip is a base tool
-sudo apt install -y unzip
+sudo apt-get install -y unzip

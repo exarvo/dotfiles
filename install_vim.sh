@@ -4,19 +4,20 @@ set -e
 
 brew install vim
 
-# Link the repo's vimrc to ~/.vimrc
+# Link vimrc from this repo (an existing real ~/.vimrc is kept as ~/.vimrc.bak)
+[ -f ~/.vimrc ] && [ ! -L ~/.vimrc ] && mv ~/.vimrc ~/.vimrc.bak
 ln -sf "$(dirname "$(realpath "$0")")/.vimrc" ~/.vimrc
 
-# Install vim-plug, then the plugins from vimrc
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+# vim-plug and plugins
+curl -fsSLo ~/.vim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -es -u ~/.vimrc -i NONE -c PlugInstall -c qa
 
-# Make vim the default editor
-cat >> ~/.zshrc <<'EOF'
+# Default editor (added once)
+grep -qxF "# Editor" ~/.zshrc || cat >> ~/.zshrc <<'EOT'
 
 # Editor
 export EDITOR=vim
 export VISUAL=vim
 alias vi=vim
-EOF
+EOT

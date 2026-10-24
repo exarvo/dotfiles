@@ -4,11 +4,11 @@ set -e
 
 brew install fnm
 
-cat >> ~/.zshrc <<'EOF'
+grep -qxF "# Node (fnm)" ~/.zshrc || cat >> ~/.zshrc <<'EOT'
 
 # Node (fnm)
 eval "$(fnm env --use-on-cd --shell zsh)"
-EOF
+EOT
 
 fnm install --lts
-fnm default lts-latest
+fnm default lts-latest || echo "Could not set the default Node. Run: fnm default <version>"

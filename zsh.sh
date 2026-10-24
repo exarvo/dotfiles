@@ -2,18 +2,22 @@
 
 set -e
 
-# Install zsh
-sudo apt install -y zsh
+command -v zsh >/dev/null || sudo apt-get install -y zsh
 
-# Make zsh the default login shell for the current user
-sudo chsh -s "$(command -v zsh)" "${USER:-$(id -un)}"
+# Default shell: applies at next login. A failure here shouldn't stop the setup.
+chsh -s "$(command -v zsh)" "${USER:-$(id -un)}" \
+  || echo "Could not change the default shell. Run later: chsh -s $(command -v zsh)"
 
-# Install Oh My Zsh (unattended: don't switch shell or launch zsh)
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+# Oh My Zsh (skipped if already installed)
+if [ ! -d ~/.oh-my-zsh ]; then
+  installer="$(mktemp)"
+  curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o "$installer"
+  sh "$installer" --unattended
+  rm -f "$installer"
+fi
 
-# Install plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+for plugin in zsh-autosuggestions zsh-syntax-highlighting; do
+  [ -d ~/.oh-my-zsh/custom/plugins/$plugin ] || git clone https://github.com/zsh-users/$plugin ~/.oh-my-zsh/custom/plugins/$plugin
+done
 
-# Enable plugins (syntax-highlighting must be last)
-sed -i 's/^plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/' ~/.zshrc
+sed -i 's/^plugins=(git)$/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/' ~/.zshrc

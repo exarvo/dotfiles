@@ -5,8 +5,8 @@ set -e
 brew install uv
 uv python install
 
-cat >> ~/.zshrc <<'EOF'
+grep -qxF "# Python (uv tools install here)" ~/.zshrc || cat >> ~/.zshrc <<'EOT'
 
-# Python (uv tools install executables here)
+# Python (uv tools install here)
 export PATH="$HOME/.local/bin:$PATH"
-EOF
+EOT
